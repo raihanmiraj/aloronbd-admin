@@ -122,24 +122,24 @@ this.setState({
     SubmitData = ()=>{
 
 
-//  console.log( JSON.stringify(this.state))
-// var formData = new FormData();
+ console.log( JSON.stringify(this.state))
+var formData = new FormData();
  
 
-// formData.append('data', JSON.stringify(this.state) );
+formData.append('data', JSON.stringify(this.state) );
 
-// axios.post('/addquestion',formData )
-// .then( (response) => {
-//   console.log(response.data)
-//   window.location.reload();
+axios.post('/addquestion',formData )
+.then( (response) => {
+  console.log(response.data)
+  window.location.reload();
  
-// })
-// .catch(  (error) => {
-//   console.log(error);
-// });
+})
+.catch(  (error) => {
+  console.log(error);
+});
 
-// this.props.history.push("/add/question/"+this.state.quiz_id);
-<Redirect to={"/add/question/"+this.state.quiz_id}/>
+this.props.history.push("/add/question/"+this.state.quiz_id);
+ 
     }
 
 
