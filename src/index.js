@@ -6,7 +6,7 @@ import Header from './Component/Header/Header';
 import axios from 'axios';
 
  
-  axios.defaults.baseURL = "http://localhost/reactapi/public/api/admin";
+  axios.defaults.baseURL = "https://api.aloronbd.com/public/api/admin";
   axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem("TOKEN_KEY");
 ReactDOM.render(
   <React.StrictMode>
