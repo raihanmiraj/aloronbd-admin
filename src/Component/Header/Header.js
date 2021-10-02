@@ -1,4 +1,4 @@
- import React, { Component } from 'react'
+import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar';
 import {
     BrowserRouter as Router,
@@ -21,10 +21,6 @@ import Profile from '../../Container/Profile/Profile';
  import PrivateRoute from '../PrivateRoute';
  import AuthContext from '../Context/AuthContext';
  import {isLogin} from '../utils/index';
- import AddQuizMeta from '../AdminComponent/AddQuizMeta/AddQuizMeta';
- import AddQuestion from '../AdminComponent/AddQuestion/AddQuestion';
- import QuizController from '../../Container/QuizController/QuizController';
- import AllQuizzes from '../Quiz/AllQuizzes/AllQuizzes';
  
 class Header extends Component {
    state = {
@@ -36,38 +32,37 @@ class Header extends Component {
     // "build": "react-scripts build",
     // "test": "react-scripts test",
 
-  //  componentDidMount(){
-  //   //    Login user crediential
-  //   axios.get('/user' )
-  //   .then( (response) => {
-  //    this.setUser(response.data);
-  //   })
-  //   .catch(  (error) => {
-  //     console.log(error);
-  //   });
-  //  }
+   componentDidMount(){
+    //    Login user crediential
+    axios.get('/user' )
+    .then( (response) => {
+     this.setUser(response.data);
+    })
+    .catch(  (error) => {
+      console.log(error);
+    });
+   }
 
-  //  setUser = (user)=>{
-  //     this.setState({user: user}) 
-  //  }
+   setUser = (user)=>{
+      this.setState({user: user}) 
+   }
   
-  //  setLoggedIn=()=>{
-  //    this.setState({
-  //      loggedIn:true
-  //    })
-  //  }
+   setLoggedIn=()=>{
+     this.setState({
+       loggedIn:true
+     })
+   }
     render() {
-      // const loggedIn = this.state.loggedIn;
-      // const setLoggedIn = this.setLoggedIn;
-      // console.log(loggedIn);
+      const loggedIn = this.state.loggedIn;
+      const setLoggedIn = this.setLoggedIn;
+      console.log(loggedIn);
         return (
             <>
      <Router> 
-     {/* <AuthContext.Provider value={{ loggedIn, setLoggedIn }}> */}
-          {/* <Navbar user={this.state.user} setUser={this.setUser} /> */}
-          <Navbar/>
-          {/* </AuthContext.Provider> */}
-         
+     <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+          <Navbar user={this.state.user} setUser={this.setUser} />
+          </AuthContext.Provider>
+          <Switch>
           {/* <Route exact path="/" component={Home} />
           <Route  path="/login" component=  {()=> <Login user={this.state.user} />} />
           <Route  exact path="/quizlist" component=  { QuizList } />
@@ -80,22 +75,18 @@ class Header extends Component {
           <Route exact   path="/userquizresult/:id" component={UserQuizResultsPage} />
            */}
              <Switch>
-             <Route exact  path="/quiz" component={()=><QuizController>Hello World</QuizController>} />
-             <Route exact  path="/quiz/allquiz" component={()=><QuizController><AllQuizzes/> </QuizController>} />
           <PublicRoute restricted={false} component={Home} path="/" exact />
           <PrivateRoute component={QuizList} path="/quizlist" exact />
           <PublicRoute restricted={isLogin()} component={()=> <Login user={this.state.user} />} path="/login" exact />
           <PublicRoute restricted={isLogin()}  component={Register} path="/register" exact />
           <PrivateRoute component={QuizStartingPage} path="/quiz/:id"  exact />
-          <PrivateRoute component={AddQuizMeta} path="/add/quiz"  exact />
-          <PrivateRoute component={AddQuestion} path="/add/question/:id"  exact />
-          <PrivateRoute component={AddQuestion} path="/add/quiz" exact />
           <PrivateRoute component={QuizPage} path="/quiz/start/:id" exact />
           <PrivateRoute component={UserProfile} path="/profile" exact />
           <PrivateRoute component={UserQuizResultsPage}  path="/userquizresult/:id" exact />
           <Route component={Home} />
         </Switch>
-      
+          
+        </Switch>
    
     </Router>
             </>
