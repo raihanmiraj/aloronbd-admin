@@ -4,12 +4,6 @@ import React, { Component, Fragment, useRef, useState } from 'react'
  import { Link } from 'react-router-dom';
  import Countdown from 'react-countdown';
  import QuizPageAnimation from './QuizPageAnimation';
- import MathElement from '../../MathElement/MathElement';
- import parse from "html-react-parser";
-//  import MathJax from 'react-mathjax-preview'
-import MathJax from "react-mathjax-preview/es/index";
-//  import MathJax from "mathjax3-react";
- 
  class QuizRenderPage extends Component {
 
     state = {
@@ -133,12 +127,6 @@ questionid :localStorage.getItem("questionID"+this.state.quiz_id)
   }
 
 
-    mathJaxFuntion = (html)=>{
-    return     <MathJax.Provider>
-    <MathJax.Html html={html}/>
-  </MathJax.Provider>
-  }
- 
     render() {
 
       
@@ -212,34 +200,8 @@ var ModalCode =   <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledb
   }
    var optionValue = "";
    optionValue =   options[optionkey].option;
-
-   
-   
-
-  if(options[optionkey].type=='math'){
-    optionValue =   String.raw`${optionValue}`
-   optionValue =     <MathJax math={optionValue} />
-    // optionValue = this.mathJaxFuntion(optionValue);
-    // optionValue =  <div dangerouslySetInnerHTML={{__html:optionValue}} />
-  }else if(options[optionkey].type=='text'){
-    optionValue = parse(optionValue);
-  }
-
-
-
-  //  optionValue =  <div dangerouslySetInnerHTML={{__html:optionValue}} />
-
-  // const tex = `<math ><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x222B;</mo><msqrt><mfrac><mn>3</mn><mn>4</mn></mfrac></msqrt></math>`;
-  // optionValue =  <MathElement elements={optionValue} />;
-
-  // optionValue = <MathElement html={optionValue} />
-//   optionValue =    <MathJax.Provider>
-//   <MathJax.Html html={optionValue}/>
-// </MathJax.Provider>
-{/* <MathJax math={this.state.math}  */}
-// optionValue =  <MathJax math={optionValue} />
-  // optionValue =  parse(optionValue);
-  var makeid =  id+optionkey;
+   optionValue =  <div dangerouslySetInnerHTML={{__html:optionValue}} />
+  var makeid =    id+optionkey;
     return (
           <label for={makeid} class={classOfRadioButton}  value={optionkey} ><input  onClick={this.quizSelectHandler} questionid={id}   id={makeid} key={makeid} type="radio" class="hidden" value={optionkey}  />{optionValue}</label>
        )

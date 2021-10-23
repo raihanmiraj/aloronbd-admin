@@ -7,8 +7,10 @@ import $ from 'jquery';
 import 'datatables.net-rowreorder';
 import 'datatables.net-responsive';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import TableAnimation from '../../TableAnimation/TableAnimation';
 
-class App extends React.Component {
+class AllQuizzes extends React.Component {
 
    state = {
     allquizdata :"",
@@ -121,7 +123,7 @@ const TableData = Object.keys(quizAllMetaData)
  var subject_name =   quizAllMetaData[key].subject_name ;
  var point =   quizAllMetaData[key].point ;
  var status =   quizAllMetaData[key].status;
- var image =   quizAllMetaData[key].image ;
+ var image =   JSON.parse(quizAllMetaData[key].image).thumb ;
  var statusCheck = status ==0?"deactive":"active";
  var id =   quizAllMetaData[key].id ;
  var statusTogggleClassHandle = status ==0?this.state.isdeactive:this.state.isactive; 
@@ -164,7 +166,7 @@ const TableData = Object.keys(quizAllMetaData)
 
   </td>
   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+    <Link to={"/add/question/"+id} class="text-indigo-600 hover:text-indigo-900">Add Ques</Link>
   </td>
 </tr>)
  
@@ -184,49 +186,49 @@ const TableData = Object.keys(quizAllMetaData)
 
   return (
  
-          
+    
      
            
 
 
  
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-5">
-        <table id="example" class="display nowrap" style={{ width: '100%' }} class="min-w-full divide-y divide-gray-200  ">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                 Question/ Point
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-            
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-          
-
-
-            {TableData}
-
-
-
-
+           {this.state.loading?<TableAnimation/>:  <table id="example" class="display nowrap" style={{ width: '100%' }} class="min-w-full divide-y divide-gray-200  ">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Name
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Question/ Point
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+          </th>
         
+          <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">Edit</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+      
 
-           
-          </tbody>
-        </table>
+
+        {TableData}
+
+
+
+
+    
+
+       
+      </tbody>
+    </table>} 
       </div>
  
  
   );
 }
 }
-export default App;
+export default AllQuizzes;
