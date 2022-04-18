@@ -1,49 +1,72 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import MyEditor from '../../MyEditor/MyEditor';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
-import './AddQuestion.css';
+import './EditQuestion.css';
 import isset from "isset-php";
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import QuizController from '../../../Container/QuizController/QuizController';
-class AddQuestion extends Component {
+export class EditQuestion extends Component {
     state = {
         quiz_id:"",
+        questionId:"",
         question: {
-            question:"",
+            question:"question",
             type:"text"
         },
         questiontype:"",
         rightNowOption:"",
         options:{
             A:{
-                option:"",
+                option:"A",
                 type:"text"
             },
-            // B:{
-            //     option:"",
-            //     type:""
-            // },
-            // C:{
-            //     option:"",
-            //     type:""
-            // },
-            // D:{
-            //     option:"",
-            //     type:""
-            // }
+            B:{
+                option:"B",
+                type:""
+            },
+            C:{
+                option:"C",
+                type:""
+            },
+            D:{
+                option:"D",
+                type:""
+            }
             
              },
-             CountOption:1,
-             posMark:0,
-             negMark:0,
+           
+            posMark:0,
+            negMark:0,
+            
+           CountOption:1,
+            
              answer:[],
              buttonState:"Add Question",
+             questionData:"",
              message:0
     }
 componentDidMount(){
-       this.setState({
+    axios.get('/question/single/'+this.props.match.params.id)
+    .then(response=>{
+        console.log(response);
+        var data = response.data.data;
+        this.setState({
+            questionId:this.props.match.params.id,
+            quiz_id:data.quiz_meta_id,
+            questionData:data,
+            question:JSON.parse(data.question),
+            options:JSON.parse(data.options),
+            posMark:JSON.parse(data.setting).posMark,
+            negMark:JSON.parse(data.setting).negMark,
+            answer:JSON.parse(data.answer),
+          })
+        var optionarray = this.state.options;
+        var CountOption = Object.keys(optionarray).length+1;
+     this.setState({CountOption:CountOption})
+    })
+     this.setState({
             quiz_id:this.props.match.params.id
         })
         console.log(this.props);  
@@ -61,8 +84,6 @@ mathOrTextSwitchHandler = (e)=>{
 console.log(e.target.value);
 
 var oldOption = "";
-
-
 if(isset(() =>  this.state.options[e.target.id].option)){
 var oldOption = this.state.options[e.target.id].option;
 }
@@ -141,10 +162,10 @@ this.setState({buttonState:"Adding..."})
  console.log( JSON.stringify(this.state))
 var formData = new FormData();
  
-
+console.log(this.state)
 formData.append('data', JSON.stringify(this.state) );
 
-axios.post('/addquestion',formData )
+axios.post('/question/update/'+this.state.questionId,formData )
 .then( (response) => {
   console.log(response.data)
 //   window.location.reload();
@@ -154,10 +175,7 @@ this.setState({message:1, buttonState:"Added"})
 .catch(  (error) => {
   console.log(error);
 });
-
-this.props.history.push("/add/question/"+this.state.quiz_id);
- 
-    }
+  }
   render() {
 
       var countOption =  this.state.CountOption  ;
@@ -176,7 +194,7 @@ ReactDOM.render(
    <input id={CreateOption} name={CreateOption}  type="radio" onChange={this.mathOrTextSwitchHandler}    value="math"  /> Math
  </div>
  </div>
-   <MyEditor
+   <MyEditor 
        handleChange={(data) => {
                var OldData = this.state.options;
                  var oldType = "text";
@@ -227,13 +245,62 @@ const  addFourOption = () =>{
  
 
 }
+var optionall = this.state.options;
+var optionrender =  Object.keys(optionall) .map(key=>{
+console.log(optionall[key])
+  var CreateOption = key;
+var textChecked = 0;
+var mathChecked = 0;
+if(optionall[key].type=='math'){
+    mathChecked = 1;
+}else{
+    textChecked=1;
+}
+return  <>   <div class="flex justify-center">
+<div class="block mt-3 p-6 py-2.5  rounded-lg shadow-lg bg-white "> <div class="flex justify-around pt-6">
+<div class="">
+<input id={CreateOption} name={CreateOption} type="radio" onChange={this.mathOrTextSwitchHandler}   value="text"  checked={textChecked} /> Text
+</div>
+<h3 class="mb-6 text-2xl font-medium text-center">Add Option {CreateOption}</h3>
+<div class="">
+<input id={CreateOption} name={CreateOption}  type="radio" onChange={this.mathOrTextSwitchHandler}    value="math"  checked={mathChecked}  /> Math
+</div>
+</div>
+<MyEditor oldata={optionall[key].option}
+handleChange={(data ) => {
+       var OldData = this.state.options;
+         var oldType = "text";
+        if(isset(()=>this.state.options[CreateOption].type )){
+var oldType = this.state.options[CreateOption].type;
+        }
+     console.log( this.state.options[CreateOption] );
+      
+         var optionMake =  {
+                  ...OldData,
+              [CreateOption]:{
+             option:this.mysqlEscape(data) ,
+             type:oldType
+
+              },
+        
+         };
+         this.setState({
+             options:optionMake
+            ,message:0,  buttonState:"Add Question"
+         });
+        }}
  
+      
+          data = {this.state.options}
+      /> </div>
+      </div></>   ;
+ })
   return (
             <>
       
  <div class="container mx-auto p-10">
 <div class="findnode " id="findnode">
-    <div> <input type="text" className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name'  placeholder="Positive Mark  " onChange={this.posMarkHandler}  />
+    <div> <input type="text" className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name' value={this.state.posMark}  placeholder="Positive Mark  " onChange={this.posMarkHandler}  />
               
                         </div>
  <div class="flex justify-center">
@@ -250,7 +317,7 @@ const  addFourOption = () =>{
   </div>
  </div>
  <div className='w-90'>
- <MyEditor
+ <MyEditor  oldata={this.state.question.question}
        handleChange={(data) => {
                 var makeQuesObj = {
                     question:this.mysqlEscape(data),
@@ -272,7 +339,7 @@ const  addFourOption = () =>{
              
              <div class="optionA" id="optionA"></div>
              <div class="optionB" id="optionB"></div>
-             <div class="optionC" id="optionC"></div>
+             <div class="optionC" id="optionC"></div> {optionrender}
                    <div class="optionD" id="optionD"></div>
                      <div class="optionE" id="optionE"></div>
                        <div class="optionF" id="optionF"></div>
@@ -289,10 +356,14 @@ const  addFourOption = () =>{
    {
  Object.keys(this.state.options) 
  .map(e=>{
+     var checkanswer = 0;
+    if(this.state.answer.indexOf(e) !== -1){
+        checkanswer = 1;
+    } 
      return (
         <div>
         <label class="inline-flex items-center">
-          <input onChange={this.AnswerHandler} type="checkbox" value={e} class="form-checkbox"/>
+          <input onChange={this.AnswerHandler} type="checkbox" value={e} class="form-checkbox" checked={checkanswer}/>
           <span class="ml-2">{e}</span>
         </label>
       </div>
@@ -302,7 +373,7 @@ const  addFourOption = () =>{
    }
   </div>
 </div>
- 
+
                 
     </div>
            
@@ -334,4 +405,4 @@ const  addFourOption = () =>{
     }
 }
 
-export default AddQuestion
+export default EditQuestion

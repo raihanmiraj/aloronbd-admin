@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'jquery/dist/jquery.min.js';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "datatables.net-dt/js/dataTables.dataTables"
@@ -7,6 +8,8 @@ import $ from 'jquery';
 import 'datatables.net-rowreorder';
 import 'datatables.net-responsive';
 import axios from 'axios';
+import TableAnimation from '../../TableAnimation/TableAnimation';
+ 
 
 class AllSubject extends React.Component {
 
@@ -111,7 +114,9 @@ axios.post('/subject/status/'+e.target.value)
   var subject_name =   AllSubjectData[key].subject_name ;
  
  var status =   AllSubjectData[key].status;
- var image =   AllSubjectData[key].image ;
+ var description =   AllSubjectData[key].description;
+ var image =   JSON.parse(AllSubjectData[key].image).thumb;
+ 
  var statusCheck = status ==0?"deactive":"active";
  var id =   AllSubjectData[key].id ;
  var statusTogggleClassHandle = status ==0?this.state.isdeactive:this.state.isactive; 
@@ -130,7 +135,7 @@ axios.post('/subject/status/'+e.target.value)
          {subject_name}
          </div>
          <div class="text-sm text-gray-500">
-          {subject_name}
+          {description}
          </div>
        </div>
      </div>
@@ -153,7 +158,7 @@ axios.post('/subject/status/'+e.target.value)
  
    </td>
    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+     <Link to={'/subject/edit/'+id} class="text-indigo-600 hover:text-indigo-900">Edit</Link>
    </td>
  </tr>)
   
@@ -177,13 +182,13 @@ axios.post('/subject/status/'+e.target.value)
  
           
      
-           
+    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-5">
 
 
 
  
-    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-5">
-    <table id="example" class="display nowrap" style={{ width: '100%' }} class="min-w-full divide-y divide-gray-200  ">
+    {this.state.loading?<TableAnimation/>:  
+    <table id="example" class="display nowrap" style={{ width: '100%' }} className="min-w-full divide-y divide-gray-200  ">
       <thead class="bg-gray-50">
         <tr>
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -215,7 +220,7 @@ axios.post('/subject/status/'+e.target.value)
        
       </tbody>
     </table>
-  </div>
+}  </div>
 
 
  

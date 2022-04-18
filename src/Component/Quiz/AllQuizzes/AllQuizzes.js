@@ -168,6 +168,10 @@ const TableData = Object.keys(quizAllMetaData)
   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
     <Link to={"/add/question/"+id} class="text-indigo-600 hover:text-indigo-900">Add Ques</Link>
   </td>
+
+  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+    <Link to={"/quiz/edit/"+id} class="text-indigo-600 hover:text-indigo-900">Edit</Link>
+  </td>
 </tr>)
  
 })
@@ -193,7 +197,7 @@ const TableData = Object.keys(quizAllMetaData)
 
  
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-5">
-           {this.state.loading?<TableAnimation/>:  <table id="example" class="display nowrap" style={{ width: '100%' }} class="min-w-full divide-y divide-gray-200  ">
+           {this.state.loading?<TableAnimation/>:  <table id="example" class="display nowrap" style={{ width: '100%' }} className="min-w-full divide-y divide-gray-200  ">
       <thead class="bg-gray-50">
         <tr>
           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -207,6 +211,9 @@ const TableData = Object.keys(quizAllMetaData)
           </th>
         
           <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">add</span>
+          </th>
+          <th scope="col" class="relative px-6 py-3">
             <span class="sr-only">Edit</span>
           </th>
         </tr>
@@ -219,7 +226,7 @@ const TableData = Object.keys(quizAllMetaData)
 
 
 
-
+ 
     
 
        

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Quiz Admin",
+  "name": "Admin Panel Of QUiz",
   "icons": [
     {
       "src": "favicon.ico",

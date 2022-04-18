@@ -5,17 +5,19 @@ import './index.css';
 import Header from './Component/Header/Header';
 import axios from 'axios';
 import Table from './Component/Table/Table';
+import MyEditor from './Component/MyEditor/MyEditor';
 
  
-  // axios.defaults.baseURL = "http://localhost/reactapi/public/api/admin";
+   axios.defaults.baseURL = "http://localhost/reactapi/public/api/admin";
   
-  //axios.defaults.baseURL = "http://localhost/reactapi/public/api/admin";
-   axios.defaults.baseURL = "https://api.aloronbd.com/public/api/admin";
-  
+  // axios.defaults.baseURL = "http://192.168.0.104/reactapi/public/api/admin";
+  // axios.defaults.baseURL = "https://api.aloronbd.com/public/api/admin";
+  //axios.defaults.baseURL = "http://27.123.254.221/reactapi/public/api/admin"
   axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem("TOKEN_KEY");
 ReactDOM.render(
   <React.StrictMode>
     <Header   />  
+    {/* <MyEditor/> */}
   
   </React.StrictMode>,
   document.getElementById('root')

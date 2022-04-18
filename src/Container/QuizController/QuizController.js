@@ -29,6 +29,11 @@ var pcSideBarMenu = <ul role="list" class="text-sm font-medium text-gray-900 spa
     All Quizzes
   </Link>
 </li>
+<li>
+  <Link to="/question/allques">
+    All Question
+  </Link>
+</li>
 
 <li>
   <Link to="/subject/allsubject" >
@@ -47,6 +52,11 @@ var pcSideBarMenu = <ul role="list" class="text-sm font-medium text-gray-900 spa
    Add Quiz
   </Link>
 </li>
+<li>
+  <Link to="/subject/add" >
+  Add Subject
+  </Link>
+</li>
 
 </ul>;
 
@@ -62,7 +72,11 @@ var mobileSideBarMenu =      <ul role="list" class="font-medium text-gray-900 px
     All Quizzes
   </Link>
 </li>
-
+<li>
+  <Link to="/question/allques"  class="block px-2 py-3">
+    All Question
+  </Link>
+</li>
 <li>
   <Link to="/subject/allsubject" class="block px-2 py-3">
     All Subjects
@@ -78,6 +92,11 @@ var mobileSideBarMenu =      <ul role="list" class="font-medium text-gray-900 px
 <li>
   <Link to="/quiz/add" class="block px-2 py-3">
   Add Quiz
+  </Link>
+</li>
+<li>
+  <Link to="/subject/add" class="block px-2 py-3">
+  Add Subject
   </Link>
 </li>
 </ul>

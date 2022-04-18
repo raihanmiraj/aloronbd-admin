@@ -22,13 +22,19 @@ import Profile from '../../Container/Profile/Profile';
  import AuthContext from '../Context/AuthContext';
  import {isLogin} from '../utils/index';
  import AddQuizMeta from '../AdminComponent/AddQuizMeta/AddQuizMeta';
+ import EditQuizMeta from '../AdminComponent/EditQuizMeta/EditQuizMeta';
  import AddQuestion from '../Quiz/AddQuestion/AddQuestion';
  import QuizController from '../../Container/QuizController/QuizController';
  import AllQuizzes from '../Quiz/AllQuizzes/AllQuizzes';
 import AllSubject from '../Quiz/AllSubject/AllSubject';
 import QuizMetaEdit from '../Quiz/QuizMetaEdit/QuizMetaEdit';
 import TableAnimation from '../TableAnimation/TableAnimation';
+ import AddSubject from '../AdminComponent/AddSubject/AddSubject';
+import EditSubject from '../AdminComponent/EditSubject/EditSubject';
  
+import QuizAnalysis from '../Quiz/QuizAnalysis/QuizAnalysis'; 
+import AllQuestion from '../../Container/Question/AllQuestion/AllQuestion';
+import EditQuestion from '../Question/EditQuestion/EditQuestion';
 class Header extends Component {
    state = {
        user:{},
@@ -82,20 +88,28 @@ class Header extends Component {
           <Route  path="/profile" component={()=> <UserProfile user={this.state.user} />} />
           <Route exact   path="/userquizresult/:id" component={UserQuizResultsPage} />
            */}
-             <Switch>
-             <Route exact  path="/quiz" component={()=><QuizController>Hello World</QuizController>} />
-             <Route exact  path="/quiz/allquiz" component={()=><QuizController><AllQuizzes/> </QuizController>} />
-             <Route exact  path="/quiz/add" component={()=><QuizController><AddQuizMeta/> </QuizController>} />
-             <Route exact  path="/quiz/edit/:id" component={()=><QuizController><QuizMetaEdit/> </QuizController>} />
-             <Route exact  path="/table" component={()=><QuizController><TableAnimation/> </QuizController>} />
-             <Route exact  path="/subject/allsubject" component={()=><QuizController><AllSubject/> </QuizController>} />
+             <Switch><QuizController>
+              <Route exact  path="/quiz" component={QuizAnalysis}  />  
+             <Route exact  path="/quiz/allquiz" component={ AllQuizzes} />
+             <Route exact  path="/quiz/add" component={ AddQuizMeta} />
+             <Route exact  path="/quiz/edit/:id" component={ EditQuizMeta  } />
+              <Route exact  path="/table" component={ TableAnimation} />
+             <Route exact  path="/subject/allsubject" component={ AllSubject} />
+             <Route exact  path="/subject/add" component={ AddSubject} />
+             <Route exact  path="/subject/edit/:id" component={ EditSubject} />
+             <Route exact  path="/question/edit/:id" component={ EditQuestion} />
+             <Route exact  path="/question/allques" component={ AllQuestion} />
+             <Route component={AddQuestion} path="/add/question/:id"    /> 
+             </QuizController>
+             
           <PublicRoute restricted={false} component={Home} path="/" exact />
           <PrivateRoute component={QuizList} path="/quizlist" exact />
           <PublicRoute restricted={isLogin()} component={()=> <Login user={this.state.user} />} path="/login" exact />
           <PublicRoute restricted={isLogin()}  component={Register} path="/register" exact />
           {/* <PrivateRoute component={QuizStartingPage} path="/quiz/:id"  exact /> */}
           {/* <PrivateRoute component={AddQuizMeta} path="/add/quiz"  exact /> */}
-          <PrivateRoute component={AddQuestion} path="/add/question/:id"  exact />
+   
+         
           {/* <PrivateRoute component={AddQuestion} path="/add/quiz" exact /> */}
           <PrivateRoute component={QuizPage} path="/quiz/start/:id" exact />
           <PrivateRoute component={UserProfile} path="/profile" exact />
