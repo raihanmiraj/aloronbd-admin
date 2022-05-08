@@ -107,7 +107,14 @@ negMarkHandler = (e)=>{
   
     this.setState({negMark:e.target.value})
     }
+    hackFreeTrial =  () =>{
+      var tick = document.querySelectorAll(".wrs_tickContainer");
+ 
+for(var i = 0 ; i<tick.length; i++){
 
+    tick[i].remove()
+}
+    }
     AnswerHandler =(e)=>{
         var answerarray =  this.state.answer;
         
@@ -158,6 +165,7 @@ this.setState({message:1, buttonState:"Added"})
 this.props.history.push("/add/question/"+this.state.quiz_id);
  
     }
+    
   render() {
 
       var countOption =  this.state.CountOption  ;
@@ -230,9 +238,9 @@ const  addFourOption = () =>{
  
   return (
             <>
-      
+     <button onClick={this.hackFreeTrial} class="freetrial">Hack</button>
  <div class="container mx-auto p-10">
-<div class="findnode " id="findnode">
+<div class="findnode " id="findnode"> 
     <div> <input type="text" className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name'  placeholder="Positive Mark  " onChange={this.posMarkHandler}  />
               
                         </div>

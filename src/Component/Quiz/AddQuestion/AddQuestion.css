@@ -36,3 +36,15 @@ input[type=radio]:checked + label::before {
 }
 
   */
+
+  .freetrial{
+      padding: 10px 20px ;
+      background: rgb(1, 183, 255);
+      border: none;
+      outline: none;
+      border-radius: 5px ;
+      color:rgb(255, 255, 255);
+      position: fixed;
+      right: 0;
+      bottom: 0;
+  }
