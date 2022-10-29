@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import {logout,isLogin} from "../utils/index";
 class Navbar extends Component{
 
   state = {
@@ -114,7 +115,7 @@ var MobileMenu = this.state.mobilemenushow? <div class="  sm:hidden" id="mobile-
             
             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+            <Link onClick={() =>{   logout();this.props.setLogout()  }}  to="/login" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Log Out</Link>
           </div>:""}
 
 

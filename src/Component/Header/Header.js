@@ -4,7 +4,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link 
   } from 'react-router-dom';
   import axios from 'axios';
 import Home from '../../Container/Home/Home';
@@ -36,11 +36,57 @@ import QuizAnalysis from '../Quiz/QuizAnalysis/QuizAnalysis';
 import AllQuestion from '../../Container/Question/AllQuestion/AllQuestion';
 import EditQuestion from '../Question/EditQuestion/EditQuestion';
 class Header extends Component {
-   state = {
-       user:{},
-       loggedIn:""
-   }
+  state = {
+    user:{},
+    loggedIn:isLogin(),
+    navbaropen:false,
+    loading:true,
+    profile_image:"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+}
 
+componentDidMount(){
+ axios.get('/user' )
+ .then( (response) => {
+   var data = response.data;
+  this.setUser(response.data);
+  var imgdata =   JSON.parse(response.data.profile_image);
+  var image =  imgdata.hasOwnProperty('thumb')?imgdata.thumb:(imgdata.hasOwnProperty('medium')?imgdata.medium:imgdata.image);
+  this.setState({
+   loggedIn:true,
+   loading:false,
+   profile_image:image
+ })
+
+ })
+ .catch(  (error) => {
+   console.log(error);
+   // localStorage.removeItem("TOKEN_KEY");
+ });
+}
+
+setProfilePicture = (data)=>{
+  this.setState({profile_image:data})
+}
+
+  navbarhandle = (data)=>{
+   this.setState({navbaropen:data})
+ }
+setUser = (user)=>{
+   this.setState({user: user}) 
+   console.log("set user also called");
+}
+
+setLoggedIn=()=>{
+  this.setState({
+    loggedIn:true
+  })
+  console.log("login True")
+}
+setLogout=()=>{
+ this.setState({
+   loggedIn:false
+ })
+}
        // "start": "react-scripts start",
     // "build": "react-scripts build",
     // "test": "react-scripts test",
@@ -66,15 +112,15 @@ class Header extends Component {
   //    })
   //  }
     render() {
-      // const loggedIn = this.state.loggedIn;
-      // const setLoggedIn = this.setLoggedIn;
-      // console.log(loggedIn);
+      const loggedIn = this.state.loggedIn;
+      const setLoggedIn = this.setLoggedIn;
+      console.log(loggedIn);
         return (
             <>
      <Router> 
      {/* <AuthContext.Provider value={{ loggedIn, setLoggedIn }}> */}
           {/* <Navbar user={this.state.user} setUser={this.setUser} /> */}
-          <Navbar/>
+          <Navbar image={this.state.profile_image} loading={this.state.loading}  navbarhandle={this.navbarhandle} setLogout={this.setLogout} checklogin={this.state.loggedIn} user={this.state.user} setUser={this.setUser} />
           {/* </AuthContext.Provider> */}
          
           {/* <Route exact path="/" component={Home} />
@@ -88,8 +134,27 @@ class Header extends Component {
           <Route  path="/profile" component={()=> <UserProfile user={this.state.user} />} />
           <Route exact   path="/userquizresult/:id" component={UserQuizResultsPage} />
            */}
-             <Switch><QuizController>
-              <Route exact  path="/quiz" component={QuizAnalysis}  />  
+             <Switch>
+                
+             <PublicRoute restricted={false} component={Home} path="/" exact />
+          <PrivateRoute component={QuizList} path="/quizlist" exact />
+          <PublicRoute restricted={isLogin()} component={()=> <Login user={this.state.user} />} path="/login" exact />
+          <PublicRoute restricted={isLogin()}  component={Register} path="/register" exact />
+              
+              <QuizController>
+              <PrivateRoute    path="/quiz" component={QuizAnalysis} exact />  
+             <PrivateRoute    path="/quiz/allquiz" component={ AllQuizzes}  exact/>
+             <PrivateRoute    path="/quiz/add" component={ AddQuizMeta} exact/>
+             <PrivateRoute    path="/quiz/edit/:id" component={ EditQuizMeta  } exact/>
+              <PrivateRoute    path="/table" component={ TableAnimation} exact/>
+             <PrivateRoute    path="/subject/allsubject" component={ AllSubject} exact/>
+             <PrivateRoute    path="/subject/add" component={ AddSubject}  exact/>
+             <PrivateRoute    path="/subject/edit/:id" component={ EditSubject} exact/>
+             <PrivateRoute    path="/question/edit/:id" component={ EditQuestion} exact/>
+             <PrivateRoute    path="/question/allques" component={ AllQuestion} exact/>
+             <PrivateRoute component={AddQuestion} path="/add/question/:id"    exact/>  
+              
+              {/* <Route exact  path="/quiz" component={QuizAnalysis}  />  
              <Route exact  path="/quiz/allquiz" component={ AllQuizzes} />
              <Route exact  path="/quiz/add" component={ AddQuizMeta} />
              <Route exact  path="/quiz/edit/:id" component={ EditQuizMeta  } />
@@ -99,13 +164,10 @@ class Header extends Component {
              <Route exact  path="/subject/edit/:id" component={ EditSubject} />
              <Route exact  path="/question/edit/:id" component={ EditQuestion} />
              <Route exact  path="/question/allques" component={ AllQuestion} />
-             <Route component={AddQuestion} path="/add/question/:id"    /> 
+             <Route component={AddQuestion} path="/add/question/:id"    />  */}
              </QuizController>
              
-          <PublicRoute restricted={false} component={Home} path="/" exact />
-          <PrivateRoute component={QuizList} path="/quizlist" exact />
-          <PublicRoute restricted={isLogin()} component={()=> <Login user={this.state.user} />} path="/login" exact />
-          <PublicRoute restricted={isLogin()}  component={Register} path="/register" exact />
+        
           {/* <PrivateRoute component={QuizStartingPage} path="/quiz/:id"  exact /> */}
           {/* <PrivateRoute component={AddQuizMeta} path="/add/quiz"  exact /> */}
    
