@@ -8,7 +8,7 @@ import Table from './Component/Table/Table';
 import MyEditor from './Component/MyEditor/MyEditor';
 
  
-  axios.defaults.baseURL = "https://api.hoichoi.fun/quizreact/public/api/admin";
+  axios.defaults.baseURL = "https://api.raihanmiraj.com/quizreact/public/api/admin";
   
   // axios.defaults.baseURL = "http://192.168.0.104/reactapi/public/api/admin";
   // axios.defaults.baseURL = "https://aloronbd.com/public/api/admin";
