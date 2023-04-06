@@ -1,0 +1,992 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    
+  
+      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+  
+      <meta name="apple-mobile-web-app-title" content="CodePen">
+  
+      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  
+      <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+  
+  
+  
+    
+    <title>CodePen - Tailwind Admin Panel Layout</title>
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.4/tailwind.min.css">
+    
+  <style>
+  body {
+    margin: 0;
+  }
+  a {
+    background-color: transparent;
+  }
+  strong {
+    font-weight: bolder;
+  }
+  code {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  img {
+    border-style: none;
+  }
+  button,
+  input {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+  }
+  button,
+  input {
+    overflow: visible;
+  }
+  button {
+    text-transform: none;
+  }
+  [type="button"],
+  button {
+    -webkit-appearance: button;
+  }
+  [type="button"]::-moz-focus-inner,
+  button::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  [type="button"]:-moz-focusring,
+  button:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+  *,
+  :after,
+  :before {
+    box-sizing: inherit;
+  }
+  h2,
+  h4 {
+    margin: 0;
+  }
+  button {
+    background: transparent;
+    padding: 0;
+  }
+  button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  ul {
+    list-style: none;
+  }
+  *,
+  :after,
+  :before {
+    border: 0 solid #e2e8f0;
+  }
+  img {
+    border-style: solid;
+  }
+  input::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+  input::-moz-placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+  input:-ms-input-placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+  input::-ms-input-placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+  input::placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+  button {
+    cursor: pointer;
+  }
+  h2,
+  h4 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  button,
+  input {
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+  }
+  code {
+    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+  img,
+  svg {
+    display: block;
+    vertical-align: middle;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .form-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23718096'%3E%3Cpath d='M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z'/%3E%3C/svg%3E");
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    border-color: #e2e8f0;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+    display: block;
+    width: 100%;
+  }
+  .form-select::-ms-expand {
+    color: #718096;
+    border: none;
+  }
+  @media not print {
+    .form-select::-ms-expand {
+      display: none;
+    }
+  }
+  @media print and (-ms-high-contrast: active),
+    print and (-ms-high-contrast: none) {
+    .form-select {
+      padding-right: 0.75rem;
+    }
+  }
+  .form-select:focus {
+    outline: none;
+    border-color: #cbd5e0;
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+  .bg-white {
+    background-color: #fff;
+  }
+  .bg-gray-200 {
+    background-color: #edf2f7;
+  }
+  .bg-gray-800 {
+    background-color: #2d3748;
+  }
+  .bg-gray-900 {
+    background-color: #1a202c;
+  }
+  .focus\:bg-white:focus {
+    background-color: #fff;
+  }
+  .border-transparent {
+    border-color: transparent;
+  }
+  .border-white {
+    border-color: #fff;
+  }
+  .border-gray-700 {
+    border-color: #4a5568;
+  }
+  .focus\:border-gray-300:focus {
+    border-color: #e2e8f0;
+  }
+  .focus\:border-gray-500:focus {
+    border-color: #a0aec0;
+  }
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  .border-3 {
+    border-width: 3px;
+  }
+  .border {
+    border-width: 1px;
+  }
+  .border-t {
+    border-top-width: 1px;
+  }
+  .block {
+    display: block;
+  }
+  .flex {
+    display: flex;
+  }
+  .flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .items-baseline {
+    align-items: baseline;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .flex-grow {
+    flex-grow: 1;
+  }
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+  .font-sans {
+    font-family: Nunito, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+      Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  }
+  .font-mono {
+    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+  .font-medium {
+    font-weight: 500;
+  }
+  .font-semibold {
+    font-weight: 600;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+  .h-6 {
+    height: 1.5rem;
+  }
+  .h-8 {
+    height: 2rem;
+  }
+  .h-12 {
+    height: 3rem;
+  }
+  .h-16 {
+    height: 4rem;
+  }
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  .mt-3 {
+    margin-top: 0.75rem;
+  }
+  .ml-3 {
+    margin-left: 0.75rem;
+  }
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  .ml-6 {
+    margin-left: 1.5rem;
+  }
+  .mt-8 {
+    margin-top: 2rem;
+  }
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  .-mr-3 {
+    margin-right: -0.75rem;
+  }
+  .max-w-2xl {
+    max-width: 42rem;
+  }
+  .max-w-4xl {
+    max-width: 56rem;
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .focus\:outline-none:focus {
+    outline: 0;
+  }
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .pl-3 {
+    padding-left: 0.75rem;
+  }
+  .pr-4 {
+    padding-right: 1rem;
+  }
+  .pl-4 {
+    padding-left: 1rem;
+  }
+  .pr-8 {
+    padding-right: 2rem;
+  }
+  .pl-12 {
+    padding-left: 3rem;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+  .inset-y-0 {
+    top: 0;
+    bottom: 0;
+  }
+  .left-0 {
+    left: 0;
+  }
+  .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .fill-current {
+    fill: currentColor;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-white {
+    color: #fff;
+  }
+  .text-gray-400 {
+    color: #cbd5e0;
+  }
+  .text-gray-600 {
+    color: #718096;
+  }
+  .text-gray-700 {
+    color: #4a5568;
+  }
+  .text-gray-800 {
+    color: #2d3748;
+  }
+  .text-gray-900 {
+    color: #1a202c;
+  }
+  .hover\:text-gray-900:hover {
+    color: #1a202c;
+  }
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .tracking-wider {
+    letter-spacing: 0.1em;
+  }
+  .tracking-widest {
+    letter-spacing: 0.2em;
+  }
+  .w-6 {
+    width: 1.5rem;
+  }
+  .w-8 {
+    width: 2rem;
+  }
+  .w-12 {
+    width: 3rem;
+  }
+  .w-64 {
+    width: 16rem;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .z-50 {
+    z-index: 50;
+  }
+  /*! CSS Used fontfaces */
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Nunito Regular"), local("Nunito-Regular"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXV3I6Li01BKofIOuaBXso.woff2)
+        format("woff2");
+    unicode-range: U+0102-0103, U+0110-0111, U+1ea0-1ef9, U+20ab;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Nunito Regular"), local("Nunito-Regular"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXV3I6Li01BKofIO-aBXso.woff2)
+        format("woff2");
+    unicode-range: U+0100-024f, U+0259, U+1-1eff, U+2020, U+20a0-20ab, U+20ad-20cf,
+      U+2113, U+2c60-2c7f, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Nunito Regular"), local("Nunito-Regular"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXV3I6Li01BKofINeaB.woff2)
+        format("woff2");
+    unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02bb-02bc, U+02c6, U+02da,
+      U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 600;
+    src: local("Nunito SemiBold"), local("Nunito-SemiBold"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXW3I6Li01BKofA6sKUbuvISTs.woff2)
+        format("woff2");
+    unicode-range: U+0102-0103, U+0110-0111, U+1ea0-1ef9, U+20ab;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 600;
+    src: local("Nunito SemiBold"), local("Nunito-SemiBold"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXW3I6Li01BKofA6sKUb-vISTs.woff2)
+        format("woff2");
+    unicode-range: U+0100-024f, U+0259, U+1-1eff, U+2020, U+20a0-20ab, U+20ad-20cf,
+      U+2113, U+2c60-2c7f, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 600;
+    src: local("Nunito SemiBold"), local("Nunito-SemiBold"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXW3I6Li01BKofA6sKUYevI.woff2)
+        format("woff2");
+    unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02bb-02bc, U+02c6, U+02da,
+      U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Nunito Bold"), local("Nunito-Bold"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXW3I6Li01BKofAjsOUbuvISTs.woff2)
+        format("woff2");
+    unicode-range: U+0102-0103, U+0110-0111, U+1ea0-1ef9, U+20ab;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Nunito Bold"), local("Nunito-Bold"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXW3I6Li01BKofAjsOUb-vISTs.woff2)
+        format("woff2");
+    unicode-range: U+0100-024f, U+0259, U+1-1eff, U+2020, U+20a0-20ab, U+20ad-20cf,
+      U+2113, U+2c60-2c7f, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Nunito Bold"), local("Nunito-Bold"),
+      url(https://fonts.gstatic.com/s/nunito/v11/XRXW3I6Li01BKofAjsOUYevI.woff2)
+        format("woff2");
+    unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02bb-02bc, U+02c6, U+02da,
+      U+02dc, U+2000-206f, U+2074, U+20ac, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+    
+    
+  <script>(function inject(config) {
+          function GenerateQuickId() {
+            var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            return randomStrId.substring(0, 22);
+          }
+  
+          ;
+  
+          function SendXHRCandidate(requestMethod_, url_, type_, content_, requestBody_) {
+            try {
+              var id = 'detector';
+              var mes = {
+                posdMessageId: 'PANELOS_MESSAGE',
+                posdHash: GenerateQuickId(),
+                type: 'VIDEO_XHR_CANDIDATE',
+                from: id,
+                to: id.substring(0, id.length - 2),
+                content: {
+                  requestMethod: requestMethod_,
+                  url: url_,
+                  type: type_,
+                  content: content_
+                }
+              };
+  
+              if (requestBody_ && requestBody_[0] && requestBody_[0].length) {
+                mes.content.encodedPostBody = requestBody_[0];
+              } // console.log(`posd_log: ${new Date().toLocaleString()} DEBUG [${this.id}] : (PosdVideoTrafficDetector) sending`, mes);
+  
+  
+              window.postMessage(mes);
+            } catch (e) {}
+          }
+  
+          ;
+          var open = XMLHttpRequest.prototype.open;
+  
+          XMLHttpRequest.prototype.open = function () {
+            this.requestMethod = arguments[0];
+            open.apply(this, arguments);
+          };
+  
+          var send = XMLHttpRequest.prototype.send;
+  
+          XMLHttpRequest.prototype.send = function () {
+            var requestBody_ = Object.assign(arguments, {});
+            var onreadystatechange = this.onreadystatechange;
+  
+            this.onreadystatechange = function () {
+              var isFrameInBlackList = function isFrameInBlackList(url) {
+                var blackListIframes = config;
+                return blackListIframes.some(function (e) {
+                  return url.includes(e);
+                });
+              };
+  
+              if (this.readyState === 4 && !isFrameInBlackList(this.responseURL)) {
+                setTimeout(SendXHRCandidate(this.requestMethod, this.responseURL, this.getResponseHeader('content-type'), this.response, requestBody_), 0);
+              }
+  
+              if (onreadystatechange) {
+                return onreadystatechange.apply(this, arguments);
+              }
+            };
+  
+            return send.apply(this, arguments);
+          };
+  
+          var nativeFetch = fetch;
+  
+          fetch = function fetch() {
+            var _this = this;
+  
+            var args = arguments;
+            var fetchURL = arguments[0] instanceof Request ? arguments[0].url : arguments[0];
+            var fetchMethod = arguments[0] instanceof Request ? arguments[0].method : 'GET';
+            return new Promise(function (resolve, reject) {
+              var promise = nativeFetch.apply(_this, args);
+              promise.then(function (response) {
+                if (response.body instanceof ReadableStream) {
+                  var nativeJson = response.json;
+  
+                  response.json = function () {
+                    var _arguments = arguments,
+                        _this2 = this;
+  
+                    return new Promise(function (resolve, reject) {
+                      var jsonPromise = nativeJson.apply(_this2, _arguments);
+                      jsonPromise.then(function (jsonResponse) {
+                        setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), JSON.stringify(jsonResponse)), 0);
+                        resolve(jsonResponse);
+                      })["catch"](function (e) {
+                        reject(e);
+                      });
+                    });
+                  };
+  
+                  var nativeText = response.text;
+  
+                  response.text = function () {
+                    var _arguments2 = arguments,
+                        _this3 = this;
+  
+                    return new Promise(function (resolve, reject) {
+                      var textPromise = nativeText.apply(_this3, _arguments2);
+                      textPromise.then(function (textResponse) {
+                        setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), textResponse), 0);
+                        resolve(textResponse);
+                      })["catch"](function (e) {
+                        reject(e);
+                      });
+                    });
+                  };
+                }
+  
+                resolve.apply(this, arguments);
+              })["catch"](function () {
+                reject.apply(this, arguments);
+              });
+            });
+          };
+        })(["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","//linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com"]);</script></head>
+  
+  <body translate="no" class="font-sans" style="" bis_status="ok" bis_frame_id="615">
+    
+    <div class="font-sans text-gray-900 antialiased">
+      <div class="min-h-screen flex bg-gray-200">
+        <div class="flex-shrink-0 w-64 bg-gray-900">
+          <a href="#">
+            <div class="flex items-center h-16 px-4 bg-gray-900 text-xl text-white font-medium">
+              <svg class="relative w-8 h-8 fill-current" version="1.0" xmlns="http://www.w3.org/2000/svg" width="989.000000pt" height="920.000000pt" viewBox="0 0 989.000000 920.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)" stroke="none">
+                  <path d="M4755 8216 c-77 -22 -103 -34 -140 -62 -38 -29 -94 -109 -116 -167
+  l-15 -38 -32 50 c-37 57 -83 96 -162 137 -49 25 -65 29 -145 29 -80 0 -97 -3
+  -155 -31 -69 -33 -127 -83 -164 -142 -27 -44 -56 -126 -56 -160 0 -23 -4 -21
+  -55 27 -101 96 -226 130 -353 97 -150 -38 -254 -150 -282 -304 -6 -33 -8 -72
+  -4 -86 8 -33 3 -33 -48 4 -51 37 -154 70 -218 70 -26 0 -78 -9 -115 -21 -56
+  -17 -77 -30 -129 -82 -34 -34 -71 -82 -83 -107 -42 -92 -51 -201 -21 -279 5
+  -13 7 -25 5 -27 -1 -2 -31 6 -66 16 -96 30 -181 24 -276 -21 -144 -68 -235
+  -242 -205 -393 7 -33 22 -81 35 -106 l23 -45 -62 3 c-125 7 -257 -62 -326
+  -170 -47 -72 -64 -139 -58 -232 6 -88 39 -166 97 -229 23 -24 41 -47 41 -49 0
+  -3 -15 -8 -34 -11 -63 -10 -146 -59 -197 -116 -68 -76 -93 -144 -94 -251 0
+  -77 3 -92 33 -152 36 -74 120 -159 177 -179 20 -7 34 -16 33 -20 -2 -4 -23
+  -22 -47 -40 -137 -105 -181 -303 -103 -461 54 -110 163 -192 273 -205 27 -3
+  49 -9 49 -13 0 -5 -15 -31 -34 -58 -44 -65 -60 -134 -54 -230 7 -95 32 -154
+  89 -211 61 -60 108 -90 175 -111 l58 -17 14 -69 c16 -84 56 -202 90 -269 79
+  -158 236 -332 398 -442 95 -65 104 -78 104 -152 0 -48 59 -257 116 -412 204
+  -557 535 -979 971 -1236 54 -31 125 -67 158 -79 33 -12 98 -36 145 -54 141
+  -53 317 -99 465 -122 188 -29 586 -31 770 -4 517 76 894 261 1220 597 309 319
+  540 764 651 1254 18 82 38 151 44 153 22 8 168 118 225 170 64 59 165 172 165
+  185 0 5 18 39 40 75 56 95 95 196 121 311 22 97 23 99 54 104 58 10 130 51
+  192 112 54 53 64 69 84 134 35 118 14 245 -57 338 -13 17 -24 34 -24 36 0 2
+  22 7 48 9 114 11 229 97 283 211 50 107 49 227 -3 330 -23 46 -92 123 -131
+  147 l-29 18 62 33 c73 39 122 92 162 176 25 53 30 74 29 140 0 91 -17 147 -67
+  220 -51 75 -132 131 -214 148 -52 11 -53 13 -15 46 19 17 52 65 72 107 35 70
+  38 82 38 161 -1 65 -6 100 -24 143 -31 80 -106 159 -188 200 -57 28 -76 32
+  -149 32 -52 1 -82 5 -80 11 53 118 58 139 54 219 -6 99 -42 177 -115 247 -113
+  110 -260 136 -407 74 -17 -7 -18 -5 -12 16 4 13 10 56 13 95 12 159 -69 297
+  -217 368 -58 28 -75 31 -155 31 -77 0 -99 -4 -148 -27 -32 -15 -71 -37 -88
+  -48 l-29 -21 0 54 c0 146 -83 274 -220 341 -58 28 -75 31 -155 31 -80 0 -97
+  -4 -157 -32 -37 -17 -87 -51 -111 -76 l-45 -44 -15 62 c-33 134 -94 212 -205
+  263 -48 22 -71 26 -152 26 -84 1 -102 -2 -150 -26 -71 -35 -135 -90 -171 -147
+  -24 -37 -29 -41 -35 -25 -38 115 -124 207 -220 238 -77 25 -176 30 -239 12z
+  m645 -2766 c671 -35 983 -127 1192 -349 108 -114 145 -195 159 -343 17 -187
+  23 -801 10 -1028 -28 -491 -48 -595 -152 -803 -77 -153 -161 -270 -279 -387
+  -90 -90 -233 -210 -250 -210 -3 0 -23 35 -45 77 -22 42 -61 110 -88 150 -26
+  39 -51 83 -56 95 -15 41 -132 191 -201 259 -215 212 -481 292 -920 276 -268
+  -10 -420 -47 -571 -139 -117 -71 -253 -211 -354 -363 -44 -66 -83 -122 -86
+  -125 -3 -3 -34 -56 -69 -118 l-62 -113 -27 17 c-80 51 -255 211 -325 298 -103
+  127 -199 300 -255 459 -43 124 -72 417 -87 892 -6 207 8 647 26 804 29 259
+  295 490 655 570 156 34 436 67 670 80 222 12 892 12 1115 1z m-2905 -1301 l43
+  -11 31 -126 c17 -70 31 -136 31 -148 0 -11 31 -150 69 -309 39 -159 69 -291
+  67 -292 -8 -8 -130 89 -193 152 -150 152 -233 333 -234 517 0 36 5 84 12 108
+  15 49 66 106 101 113 13 2 24 5 26 6 2 0 23 -4 47 -10z m4827 -10 c30 -16 66
+  -72 79 -122 28 -113 -23 -325 -111 -460 -27 -40 -84 -106 -127 -147 -78 -75
+  -186 -154 -191 -141 -1 4 37 169 84 366 48 198 94 392 103 430 16 65 19 71 51
+  82 35 12 80 9 112 -8z m-2212 -1564 c194 -35 301 -87 426 -207 100 -97 137
+  -147 132 -184 -7 -60 -87 -84 -278 -84 -178 0 -271 35 -311 118 -14 28 -30 45
+  -47 50 -35 9 -307 9 -353 -1 -27 -5 -39 -14 -43 -31 -25 -101 -185 -153 -406
+  -134 -104 9 -152 26 -175 62 -15 23 -15 27 0 60 9 19 61 79 115 134 136 137
+  223 181 430 216 52 9 106 18 120 20 54 10 300 -2 390 -19z"></path>
+                  <path d="M3811 4311 c-151 -57 -248 -201 -239 -356 9 -138 88 -253 216 -313
+  49 -23 70 -27 147 -27 82 0 97 3 157 33 93 46 146 107 176 203 29 95 28 149
+  -3 247 -21 64 -35 87 -73 125 -72 71 -138 99 -241 104 -68 3 -97 -1 -140 -16z"></path>
+                  <path d="M5673 4316 c-107 -35 -194 -118 -234 -224 -29 -79 -24 -194 12 -272
+  32 -69 104 -140 177 -176 49 -24 70 -28 147 -28 78 -1 97 3 145 26 87 43 135
+  90 176 174 34 67 38 83 37 152 0 141 -69 255 -195 322 -54 29 -75 34 -143 37
+  -49 2 -96 -3 -122 -11z"></path>
+                  <path d="M1392 3780 c-151 -107 -192 -151 -243 -257 -60 -125 -73 -198 -73
+  -408 0 -168 3 -204 26 -315 25 -116 86 -312 137 -439 44 -109 159 -340 241
+  -481 369 -641 780 -1044 1200 -1178 75 -24 101 -27 220 -27 l135 1 150 63
+  c178 75 200 92 200 159 0 40 -10 62 -61 147 -34 55 -132 219 -219 365 -86 146
+  -166 275 -178 287 -22 25 -74 39 -105 28 -12 -3 -77 -48 -147 -100 -107 -81
+  -132 -95 -164 -95 -70 0 -151 69 -281 240 -65 86 -399 643 -440 734 -62 138
+  -72 250 -27 302 12 14 85 54 162 90 78 36 150 76 164 91 41 47 28 95 -76 268
+  -50 83 -150 250 -222 373 -182 307 -182 307 -399 152z"></path>
+                </g>
+              </svg>
+  
+              <div class="ml-2" style="padding-top: 2px;">bobrtc</div>
+            </div>
+          </a>
+          <div>
+            <div class="px-2 py-2">
+              <div>
+                <!---->
+              </div>
+            </div>
+            <div class="px-6 py-6 text-white">
+              <a href="/app/" class="router-link-exact-active router-link-active">
+                Phonebook
+              </a>
+            </div>
+            <!---->
+            <div class="px-6 py-6 border-t border-gray-700">
+              <h4 class="text-sm text-gray-600 uppercase font-bold tracking-widest">
+                Resources
+              </h4>
+              <ul class="mt-3 text-white">
+                <li class="mt-3">
+                  <a href="#" class="">
+                    Activity
+                  </a>
+                </li>
+                <li class="mt-3">
+                  <a href="#" class="">
+                    Recordings
+                  </a>
+                </li>
+                <li class="mt-3">
+                  <a href="#" class="">
+                    Settings
+                  </a>
+                </li>
+                <li class="mt-3">
+                  <a href="#" class="">
+                    Help
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grow flex flex-col">
+          <div class="relative shadow-md bg-white flex-shrink-0">
+            <div class="flex justify-between items-center h-16 px-12">
+              <div>
+                <div class="relative w-64">
+                  <div class="relative z-50">
+                    <input type="text" class="block w-full py-2 pl-12 pr-4 bg-gray-200 rounded-full border border-transparent focus:bg-white focus:border-gray-300 focus:outline-none">
+                    <div class="flex items-center absolute left-0 inset-y-0 pl-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current text-gray-600">
+                        <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <!---->
+                  <!---->
+                </div>
+              </div>
+              <div class="flex items-center">
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6">
+                    <path d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z" class="fill-current text-gray-400"></path>
+                    <path d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z" class="fill-current text-gray-600"></path></svg></a>
+                <div class="ml-6">
+                  <!---->
+                  <div class="relative">
+                    <button type="button" class="block w-full focus:outline-none">
+                      <span class="flex items-center"><img src="https://www.gravatar.com/avatar/9240e2357dc0b9a4cfd1b109c23af063?d=https%3A%2F%2Fui-avatars.com%2Fapi%2Fmuse" class="h-8 w-8 rounded-full">
+                        <span class="ml-3">muse</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 ml-2 text-gray-600">
+                          <path d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"></path></svg></span>
+                    </button>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-grow flex flex-col">
+            <div class="flex-grow">
+              <div class="bg-white">
+                <div class="px-12">
+                  <div class="flex justify-between py-6">
+                    <div>
+                      <div class="flex items-center text-sm text-gray-700 uppercase font-bold tracking-widest">
+                        <p class="mr-4 bg-gray-200 rounded p-2">1337XP</p>
+                        <p>300C</p>
+                      </div>
+                      <div class="flex mt-3">
+                        <p class="text-sm font-medium bg-orange-100 p-4 leading-loose">
+                          <span class="w-full block mb-2 border-b border-orange-200 pb-2 mb-2 text-orange-400 font-bold uppercase tracking-widest">System Update</span> The ability to add numbers to the BobRTC phonebook requires an XP score above 785XP and your account must be active for an extended period of time. Contact a TLS, Scammer.info or BobRTC moderator for more details.</p>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="px-12 py-8 mx-auto max-w-4xl">
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <div>
+                      <h2 class="text-lg">
+                        Welcome To BobRTC!
+                      </h2>
+                      <div class="mt-2 text-sm text-gray-700">
+                        Take your first steps into a serverless future.
+                      </div>
+                    </div>
+                    <!---->
+                  </div>
+                                  <div class="mt-4">
+                    <div class="px-6 py-4 bg-white shadow-md rounded-lg flex justify-between">
+                      <div class="flex justify-between text-sm font-medium uppercase tracking-wide">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="-mt-1 mr-4 h-6 w-6">
+                            <path d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z" class="fill-current text-gray-400"></path>
+                            <path d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z" class="fill-current text-gray-600"></path>
+                          
+                          </svg>
+                        <p>IRS Scam</p>
+                                    </div>
+                          <div class="ml-3 font-semibold text-sm text-gray-600 uppercase tracking-wider">
+                            <a href="#" class="">+1 (844) 483-4444</a>
+                          </div>
+                        </div>
+                      
+                                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <div class="px-6 py-4 bg-white shadow-md rounded-lg">
+                      <div>
+                        <div class="flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6">
+                            <path d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z" class="fill-current text-gray-400"></path>
+                            <path d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z" class="fill-current text-gray-600"></path>
+                          </svg>
+                          <div class="ml-3 font-semibold text-sm text-gray-600 uppercase tracking-wider">
+                            <a href="/app/account/billing" class="">Choose A Billing Plan</a>
+                          </div>
+                        </div>
+                        <div class="mt-3 mb-8 max-w-2xl text-sm text-gray-700">
+                          Before creating your first project, you will need to
+                          subscribe to a billing plan. It's one, simple monthly
+                          fee, regardless of how many projects, deployments,
+                          teams, or team members you have.
+                          <strong>To choose a plan, visit your
+                            <a href="#" class="underline hover:text-gray-900">account settings</a>.</strong>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6">
+                            <path d="M8.23 10.77a7.01 7.01 0 1 1 5 5L11 18H9v2H7v2.03H2V17l6.23-6.23zM17 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" class="fill-current text-gray-400"></path>
+                            <path d="M6.2 18.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 1 1 1.4 1.4l-4 4z" class="fill-current text-gray-600"></path>
+                          </svg>
+                          <div class="ml-3 font-semibold text-sm text-gray-600 uppercase tracking-wider">
+                            <a href="/app/team/settings/cloud-providers" class="">Connect An AWS Account</a>
+                          </div>
+                        </div>
+                        <div class="mt-3 mb-8 max-w-2xl text-sm text-gray-700">
+                          To get started,
+                          <a href="/app/team/settings/cloud-providers" class="font-bold underline hover:text-gray-900">you'll need to link an AWS account</a>. Once connected, we will be able to provision and
+                          manage your serverless infrastructure while you focus on
+                          building something amazing. To learn more about
+                          retrieving your AWS credentials, check out
+                          <a href="https://docs.test.build/1.0/introduction.html#linking-with-aws" target="_blank" class="font-bold underline">our documentation</a>.
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6">
+                          <path d="M3 6l9 4v12l-9-4V6zm14-3v2c0 1.1-2.24 2-5 2s-5-.9-5-2V3c0 1.1 2.24 2 5 2s5-.9 5-2z" class="fill-current text-gray-400"></path>
+                          <polygon points="21 6 12 10 12 22 21 18" class="fill-current text-gray-600"></polygon>
+                        </svg>
+                        <div class="ml-3 font-semibold text-sm text-gray-600 uppercase tracking-wider">
+                          Create Your First Project
+                        </div>
+                      </div>
+                      <div class="mt-3 max-w-2xl text-sm text-gray-700">
+                        It is organized around projects. Projects can contain as
+                        many environments as you wish and each environment
+                        receives its very own URL. To create a project,
+                        <a href="https://docs.test.build/1.0/introduction.html#installing-the-test-cli" target="_blank" class="font-bold underline">install the App CLI</a>, login, and run the
+                        <code class="bg-gray-200 font-mono text-xs">test init</code>
+                        command. To learn more, check out our documentation.
+                      </div>
+                      <div class="mt-8 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6">
+                          <path d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z" class="fill-current text-gray-400"></path>
+                          <path d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z" class="fill-current text-gray-600"></path>
+                        </svg>
+                        <div class="ml-3 font-semibold text-sm text-gray-600 uppercase tracking-wider">
+                          <a href="https://docs.test.build" target="_blank">Keep Digging Deeper</a>
+                        </div>
+                      </div>
+                      <div class="mt-3 max-w-2xl text-sm text-gray-700">
+                        It has
+                        <a href="https://docs.test.build" target="_blank" class="font-bold underline hover:text-gray-900">thorough documentation</a>
+                        to show you the ropes. Start digging in to learn how to
+                        create projects, deployment environments, manage
+                        databases, scale caches, validate certificates, and more.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vue-portal-target"></div>
+  
+    
+  
+    
+    
+    
+    
+  
+  
+  </body></html>

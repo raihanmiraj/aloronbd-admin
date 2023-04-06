@@ -31,7 +31,7 @@ import QuizMetaEdit from '../Quiz/QuizMetaEdit/QuizMetaEdit';
 import TableAnimation from '../TableAnimation/TableAnimation';
  import AddSubject from '../AdminComponent/AddSubject/AddSubject';
 import EditSubject from '../AdminComponent/EditSubject/EditSubject';
- 
+import UserSettings from '../../Container/Profile/UserSettings/UserSettings';
 import QuizAnalysis from '../Quiz/QuizAnalysis/QuizAnalysis'; 
 import AllQuestion from '../../Container/Question/AllQuestion/AllQuestion';
 import EditQuestion from '../Question/EditQuestion/EditQuestion';
@@ -59,8 +59,13 @@ componentDidMount(){
 
  })
  .catch(  (error) => {
-   console.log(error);
-   // localStorage.removeItem("TOKEN_KEY");
+  this.setState({
+    loggedIn:false,
+  })
+  // if(localStorage.getItem("TOKEN_KEY")){
+  //   localStorage.removeItem("TOKEN_KEY");
+  // }
+
  });
 }
 
@@ -72,7 +77,7 @@ setProfilePicture = (data)=>{
    this.setState({navbaropen:data})
  }
 setUser = (user)=>{
-   this.setState({user: user}) 
+   this.setState({user: user , loggedIn:true }) 
    console.log("set user also called");
 }
 
@@ -118,30 +123,17 @@ setLogout=()=>{
         return (
             <>
      <Router> 
-     {/* <AuthContext.Provider value={{ loggedIn, setLoggedIn }}> */}
-          {/* <Navbar user={this.state.user} setUser={this.setUser} /> */}
-          <Navbar image={this.state.profile_image} loading={this.state.loading}  navbarhandle={this.navbarhandle} setLogout={this.setLogout} checklogin={this.state.loggedIn} user={this.state.user} setUser={this.setUser} />
-          {/* </AuthContext.Provider> */}
-         
-          {/* <Route exact path="/" component={Home} />
-          <Route  path="/login" component=  {()=> <Login user={this.state.user} />} />
-          <Route  exact path="/quizlist" component=  { QuizList } />
-          
-          <Route exact  path="/quiz/:id" component={QuizStartingPage} />
-          <Route exact  path="/quiz/start/:id" component={QuizPage} />
-          <Route  path="/forgetpassword" component={ForgetPassword} />
-          <Route  path="/register" component={()=> <Register user={this.state.user} />}  />
-          <Route  path="/profile" component={()=> <UserProfile user={this.state.user} />} />
-          <Route exact   path="/userquizresult/:id" component={UserQuizResultsPage} />
-           */}
+     
+          <Navbar image={this.state.profile_image} loading={this.state.loading}  navbarhandle={this.navbarhandle} setLogout={this.setLogout} checklogin={this.state.loggedIn} user={this.state.user} setUser={this.setUser}  navbaropen = {this.state.navbaropen}  >
+        
              <Switch>
                 
              <PublicRoute restricted={false} component={Home} path="/" exact />
           <PrivateRoute component={QuizList} path="/quizlist" exact />
-          <PublicRoute restricted={isLogin()} component={()=> <Login user={this.state.user} />} path="/login" exact />
+          <PublicRoute restricted={isLogin()} component={()=> <Login user={this.state.user} setUser = {this.setUser} />} path="/login" exact />
           <PublicRoute restricted={isLogin()}  component={Register} path="/register" exact />
               
-              <QuizController>
+          
               <PrivateRoute    path="/quiz" component={QuizAnalysis} exact />  
              <PrivateRoute    path="/quiz/allquiz" component={ AllQuizzes}  exact/>
              <PrivateRoute    path="/quiz/add" component={ AddQuizMeta} exact/>
@@ -153,33 +145,17 @@ setLogout=()=>{
              <PrivateRoute    path="/question/edit/:id" component={ EditQuestion} exact/>
              <PrivateRoute    path="/question/allques" component={ AllQuestion} exact/>
              <PrivateRoute component={AddQuestion} path="/add/question/:id"    exact/>  
-              
-              {/* <Route exact  path="/quiz" component={QuizAnalysis}  />  
-             <Route exact  path="/quiz/allquiz" component={ AllQuizzes} />
-             <Route exact  path="/quiz/add" component={ AddQuizMeta} />
-             <Route exact  path="/quiz/edit/:id" component={ EditQuizMeta  } />
-              <Route exact  path="/table" component={ TableAnimation} />
-             <Route exact  path="/subject/allsubject" component={ AllSubject} />
-             <Route exact  path="/subject/add" component={ AddSubject} />
-             <Route exact  path="/subject/edit/:id" component={ EditSubject} />
-             <Route exact  path="/question/edit/:id" component={ EditQuestion} />
-             <Route exact  path="/question/allques" component={ AllQuestion} />
-             <Route component={AddQuestion} path="/add/question/:id"    />  */}
-             </QuizController>
-             
-        
-          {/* <PrivateRoute component={QuizStartingPage} path="/quiz/:id"  exact /> */}
-          {/* <PrivateRoute component={AddQuizMeta} path="/add/quiz"  exact /> */}
-   
-         
-          {/* <PrivateRoute component={AddQuestion} path="/add/quiz" exact /> */}
+          
+             <PrivateRoute component={()=><UserSettings user={this.state.user}/>} path="/settings" exact />
+
+
           <PrivateRoute component={QuizPage} path="/quiz/start/:id" exact />
           <PrivateRoute component={UserProfile} path="/profile" exact />
           <PrivateRoute component={UserQuizResultsPage}  path="/userquizresult/:id" exact />
           <Route component={Home} />
         </Switch>
       
-   
+   </Navbar>
     </Router>
             </>
         )

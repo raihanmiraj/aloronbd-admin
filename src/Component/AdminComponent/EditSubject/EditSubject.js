@@ -29,7 +29,7 @@ export class EditSubject extends Component {
      subject_name:data.subject_name,
      subject_id:data.id,
      description:data.description,
-     imagetodisplay:images.image
+     imagetodisplay: images.image
 
  })
      

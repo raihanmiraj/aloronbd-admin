@@ -6,6 +6,9 @@
     "@ckeditor/ckeditor5-react": "^3.0.2",
     "@ckeditor/ckeditor5-upload": "^29.2.0",
     "@craco/craco": "^6.4.5",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@testing-library/jest-dom": "^5.11.4",
@@ -31,9 +34,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "craco --openssl-legacy-provider  start",
+    "build": "craco --openssl-legacy-provider  build",
+    "test": "craco --openssl-legacy-provider  test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

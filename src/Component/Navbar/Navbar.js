@@ -1,146 +1,179 @@
-import React, {Component} from "react";
-import { Link } from "react-router-dom";
-import {logout,isLogin} from "../utils/index";
-class Navbar extends Component{
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-  state = {
-    profileshow:false,
-    mobilemenushow:false
+class Navbar extends Component {
+  state ={
+    checklogin:false
   }
-
-
-  handleProfileButton = ()=>{
-    // document.querySelector("#profilebar").classList.toggle("hidden");
-    if(this.state.profileshow==false){
-      this.setState({profileshow:true})
-    }else{
-      this.setState({profileshow:false})
-    }
+  componentDidMount(){
+    this.setState({checklogin:this.props.checklogin})
+  }
+  render() {
   
-  }
-
-  mobileMenuHandler = ()=>{
-    // document.querySelector("#mobile-menu").classList.toggle("hidden")
-    if(this.state.mobilemenushow==false){
-      this.setState({mobilemenushow:true})
-    }else{
-      this.setState({mobilemenushow:false})
-    }
-  }
-
-
-  render(){
-
-var MobileMenu = this.state.mobilemenushow? <div class="  sm:hidden" id="mobile-menu">
-<div class="px-2 pt-2 pb-3 space-y-1">
-  
-  <Link to="/quiz" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Quiz</Link>
-
-  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Teachers</a>
-
-  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Students</a>
-
-  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Settings</a>
-</div>
-</div>:"";
- var PcMenu =<div class="flex-1 hidden justify-center items-center sm:block sm:ml-6">
- <div class="flex space-x-4">
-
-   <Link to="/quiz" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Quiz</Link>
-
-   <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Teachers</a>
-
-   <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Students</a>
-
-   <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Settings</a>
- </div>
-</div>;
-
-
-    return(<>
+const menu = <ul className="mt-3 text-white">
  
-<nav class="bg-gray-800">
-  <div class="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="relative flex items-center justify-between h-16">
-      <div class="flex-1 justify-start items-start flex items-center sm:hidden">
-     
-        <div class="flex-1 ">
-
-          <button type="button" class=" inline-flex   p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" onClick={this.mobileMenuHandler} aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-         
-             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>  
-            
-            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-        </div>
-       
-      </div>
-      <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-        <div class="flex-shrink-0 flex items-center text-white text-3xl">
-          
-          AloronBD
-        </div>
+<li className="mt-3">
+  <Link to="/quiz/allquiz" className="">
+  All Quizzes
+  </Link>
+</li>
+<li  className="mt-3">
+      <Link to="/question/allques">
+        All Question
+      </Link>
+    </li>
+    
+    <li  className="mt-3">
+      <Link to="/subject/allsubject" >
+        All Subjects
+      </Link>
+    </li>
    
-      </div>
+    
+    <li  className="mt-3">
+      <Link to="/quiz/add">
+       Add Quiz
+      </Link>
+    </li>
+    <li  className="mt-3">
+      <Link to="/subject/add" >
+      Add Subject
+      </Link>
+    </li>
+</ul>;
 
-      {PcMenu}
-
-
-      <div class="flex-1  justify-end flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button type="button" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-          <span class="sr-only">View notifications</span>
-           
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
-        </button>
-
-        
-        <div class="ml-3 relative">
-          <div>
-            <button type="button" onClick={this.handleProfileButton} class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-            </button>
+   
+    
+    return (
+      <>
+      {this.state.checklogin?
+    
+           <>
+  <div className="font-sans text-gray-900 antialiased">
+    <div className="min-h-screen flex bg-gray-200">
+      <div className="flex-shrink-0 w-64 bg-gray-900">
+        <Link to="/quiz">
+          <div className="flex items-center h-16 px-4 bg-gray-900 text-xl text-white font-medium">
+      
+            <div className="ml-2" style={{ paddingTop: 2 }}>
+             AloronBD
+            </div>
           </div>
+        </Link>
+        <div>
+          <div className="px-2 py-2">
+            <div>{/**/}</div>
+          </div>
+          <div className="px-6 py-6 text-white">
+            <Link
+              to="/quiz"
+              className="router-link-exact-active router-link-active"
+            >
+            Quiz Analytics
+            </Link>
+          </div>
+          {/**/}
+          <div className="px-6 py-6 border-t border-gray-700">
+            <h4 className="text-sm text-gray-600 uppercase font-bold tracking-widest">
+              Resources
+            </h4>
+            {menu}
+          </div>
+        </div>
+      </div>
+      <div className="flex-grow flex flex-col">
+        <div className="relative shadow-md bg-white flex-shrink-0">
+          <div className="flex justify-between items-center h-16 px-12">
+            <div>
+              <div className="relative w-64">
+                <div className="relative z-50">
+                  <input
+                    type="text"
+                    className="block w-full py-2 pl-12 pr-4 bg-gray-200 rounded-full border border-transparent focus:bg-white focus:border-gray-300 focus:outline-none"
+                  />
+                  <div className="flex items-center absolute left-0 inset-y-0 pl-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="h-6 w-6 fill-current text-gray-600"
+                    >
+                      <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+                    </svg>
+                  </div>
+                </div>
+                {/**/}
+                {/**/}
+              </div>
+            </div>
+            <div className="flex items-center">
+              <Link to="/quiz">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6"
+                >
+                  <path
+                    d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z"
+                    className="fill-current text-gray-400"
+                  />
+                  <path
+                    d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z"
+                    className="fill-current text-gray-600"
+                  />
+                </svg>
+              </Link>
+              <div className="ml-6">
+                {/**/}
+                <div className="relative">
+                  <button
+                    type="button"
+                    className="block w-full focus:outline-none"
+                  >
+                    <span className="flex items-center" onClick={()=>{this.props.navbarhandle(this.props.navbaropen?false:true)}}>
+                      <img
+                        src="https://www.gravatar.com/avatar/9240e2357dc0b9a4cfd1b109c23af063?d=https%3A%2F%2Fui-avatars.com%2Fapi%2Fmuse"
+                        className="h-8 w-8 rounded-full"
+                      />
+                      <span className="ml-3">{this.props.user.name}</span>
 
-       
-         {this.state.profileshow? <div id="profilebar" class=" z-40 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-            <Link onClick={() =>{   logout();this.props.setLogout()  }}  to="/login" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Log Out</Link>
-          </div>:""}
 
+                     {this.props.navbaropen? <div class="origin-top-right absolute right-0 mt-2 top-10 w-48 rounded-md shadow-lg py-1 z-40 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" bis_skin_checked="1">
+                        
+                        {/* <Link class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0" to="/profile">Your Profile</Link> */}
+                        <Link class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1" to="/settings">Settings</Link><buttn class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2"  onClick={()=>{
+                          localStorage.removeItem("TOKEN_KEY");
+                          window.location.href = window.location.origin
+                        }}>Log Out</buttn>
+                      
+                      </div>:""}
 
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-6 w-6 ml-2 text-gray-600"
+                      >
+                        <path d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" />
+                      </svg>
+                    </span>
+                  </button>
+                  {/**/}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex-grow flex flex-col p-5">
+        {this.props.children}
 
         </div>
       </div>
     </div>
   </div>
-
  
-  {MobileMenu}
-
-
-</nav>
-    
-    
-    
-    </>);
+</> :this.props.children}</>
+    );
   }
-
 }
 
-
 export default Navbar;
-
-
-
- 

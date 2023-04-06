@@ -1,6 +1,7 @@
 // import React, {Component} from "react";
 // import { Link } from "react-router-dom";
-// class Navbarx extends Component{
+// import {logout,isLogin} from "../utils/index";
+// class Navbar extends Component{
 
 //   state = {
 //     profileshow:false,
@@ -114,7 +115,7 @@
             
 //             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 //             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-//             <Link onClick={() =>{  setIsOpenProfileButton(!isOpenProfileButton) ;logout();props.setLogout()  }}  to="/profile" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Log Out</Link>
+//             <Link onClick={() =>{   logout();this.props.setLogout()  }}  to="/login" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Log Out</Link>
 //           </div>:""}
 
 
@@ -138,7 +139,7 @@
 // }
 
 
-// export default Navbarx;
+// export default Navbar;
 
 
 
