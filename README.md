@@ -1,6 +1,6 @@
- # AloronBD
+# AloronBD Admin
 
-It is Complete Quiz Project. 
+It is Complete Quiz Admin Project. 
 
 ## Installation
 
@@ -15,31 +15,30 @@ npm start
 
 - Quiz Timer
 - Question/Options Soring 
-- Once click answer can't remove
-- Student Dashboard, can check result and answer
-- Student profile Settings
+- Quiz/subject/question add/remove/edit
+- Quiz Analytics
 
 
 ## Screenshot
 
 Here Are Some Screenshot/Demo 
 
-## Homepage
+## Quiz Analytics
 
-![](examples/home.png)
+![](examples/quizanalytics.png)
 
-## Quiz Page
+## Add Quiz  
 
-![](examples/quiz.png)
+![](examples/addquiz.png)
 
-## Quiz Results 
+## Quiz List
 
-![](examples/quizmarks.png)
+![](examples/quizlist.png)
 
 
-## User Profile
+## Features
 
-![](examples/profile.png)
+![](examples/special.png)
  
 ## User Settings
 
@@ -52,4 +51,3 @@ Here Are Some Screenshot/Demo
  
 
 [Admin Panel Backend](https://github.com/raihanmiraj/aloronbdapi)
-
